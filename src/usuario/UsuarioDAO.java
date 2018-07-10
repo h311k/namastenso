@@ -3,7 +3,6 @@ package usuario;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ import java.util.logging.Logger;
 
 import org.primefaces.context.RequestContext;
 
-import conexao.DadosConexao;
+import conexao.FabricaConexao;
 import conexao.Queries;
 
 public class UsuarioDAO {
@@ -32,13 +31,15 @@ public class UsuarioDAO {
 		
 		Map<String,String> dadosUsuario = new HashMap<String,String>();
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		
+		FabricaConexao fc = new FabricaConexao();
+		Connection con = fc.getConexao();
 		ResultSet rs = null;
+		
 		String mensagemRetorno = "Não achamos seu nome de usuário.";
 		pass=encriptaSenha(pass);
 		
 		try {
-			Class.forName(DadosConexao.DRIVER);
-            Connection con = (Connection) DriverManager.getConnection(DadosConexao.URL);
             PreparedStatement ps = con.prepareStatement(Queries.AUTENTICA_USUARIO);
             ps.setString(1, user);
             ps.setString(2, pass);
@@ -61,7 +62,7 @@ public class UsuarioDAO {
             }
             rs.close();
             
-		} catch (SQLException | ClassNotFoundException ex) {
+		} catch (SQLException ex) {
 			Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		

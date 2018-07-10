@@ -24,6 +24,7 @@ public class UsuarioBean extends Usuario {
 		}
 	}
 	
+	
 	public void validaUsuario() {
 		if(this.getEmail()==null) {
 			try {
