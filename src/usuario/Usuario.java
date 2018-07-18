@@ -1,23 +1,34 @@
 package usuario;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * @author haony
  * 
- * Entidade de Usuário refletindo a tabela de usuarios do BD.
+ * Entidade de Usuario refletindo a tabela de usuarios do BD.
  *
  */
+@Entity
+@Table(name="usuarios")
+@NamedQuery(name="AUTENTICA_USUARIO", query="from Usuario where email=:email and senha=:senha")
 public class Usuario {
-
-	private int id;
+	
+	@Id
+	@GeneratedValue
+	private int idUsuario;
 	private String email;
 	private boolean ativo;
 	private String dataInscricao;
-	public int getId() {
-		return id;
+	
+	public int getIdUsuario() {
+		return idUsuario;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 	public String getEmail() {
 		return email;

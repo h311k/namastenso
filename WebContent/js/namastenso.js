@@ -16,9 +16,6 @@ $(document).ready(function() {
 			var retorno = args.retorno;
 			if(retorno!="ok"){
 				alert(retorno);
-			} else {
-				//Abrir a pagina inicial
-				window.open("http://localhost:8080/namastenso/index.xhtml", '_self');
 			}
 		}
 	});

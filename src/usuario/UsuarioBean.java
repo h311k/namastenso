@@ -7,9 +7,44 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+
 @ManagedBean
 @SessionScoped
-public class UsuarioBean extends Usuario {
+public class UsuarioBean {
+
+	private int idUsuario;
+	private String email;
+	private String dataInscricao;
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getDataInscricao() {
+		return dataInscricao;
+	}
+
+
+	public void setDataInscricao(String dataInscricao) {
+		this.dataInscricao = dataInscricao;
+	}
 
 
 	public void efetuaLogin() {
@@ -17,10 +52,21 @@ public class UsuarioBean extends Usuario {
 		String usuario = requestParamMap.get("user");
 		String pass = requestParamMap.get("pass");
 		UsuarioDAO ud = new UsuarioDAO();
-		Map<String,String> dadosUsuario = ud.validaLogin(usuario, pass);
-		if(dadosUsuario!=null) {
-			this.setEmail(dadosUsuario.get("email"));
-			this.setDataInscricao("dataInscricao");
+		Usuario u = ud.validaLogin(usuario, pass);
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		if(u==null) {
+			requestContext.addCallbackParam("retorno", "Usuário ou senha inválidos");
+		} else {
+			this.setIdUsuario(u.getIdUsuario());
+			this.setEmail(u.getEmail());
+			this.setDataInscricao(u.getDataInscricao());
+			requestContext.addCallbackParam("retorno", "ok");
+			//inserir condicao caso o usuario não esteja ativo e redirecionar para a futura pagina de cadastro.
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
