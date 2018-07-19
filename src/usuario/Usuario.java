@@ -3,6 +3,7 @@ package usuario;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -14,7 +15,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="usuarios")
-@NamedQuery(name="AUTENTICA_USUARIO", query="from Usuario where email=:email and senha=:senha")
+@NamedQueries({
+	@NamedQuery(name="AUTENTICA_USUARIO", query="from Usuario where email=:email and senha=:senha"),
+	@NamedQuery(name="VERIFICA_EXISTENCIA_USUARIO", query="from Usuario where email=:email")
+})
 public class Usuario {
 	
 	@Id

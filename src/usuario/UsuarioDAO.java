@@ -44,6 +44,14 @@ public class UsuarioDAO {
 	}
 	
 	/**
+	 * 
+	 * Cria a conta desativada de usuario e envia email para ativacao
+	 */
+	protected void criaConta(String user, String pass) {
+		pass=encriptaSenha(pass);
+	}
+	
+	/**
 	 * Converte o valor inserido para chave MD5.
 	 * 
 	 * @param pass (Password antes da encriptacao).
