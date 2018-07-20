@@ -17,7 +17,8 @@ import javax.persistence.Table;
 @Table(name="usuarios")
 @NamedQueries({
 	@NamedQuery(name="AUTENTICA_USUARIO", query="from Usuario where email=:email and senha=:senha"),
-	@NamedQuery(name="VERIFICA_EXISTENCIA_USUARIO", query="from Usuario where email=:email")
+	@NamedQuery(name="VERIFICA_EXISTENCIA_USUARIO", query="from Usuario where email=:email"),
+	@NamedQuery(name="VERIFICA_USUARIO_ATIVO", query="from Usuario where email=:email and ativo='0'")
 })
 public class Usuario {
 	

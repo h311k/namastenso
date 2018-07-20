@@ -7,8 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import conexao.FabricaConexao;
@@ -49,6 +47,8 @@ public class UsuarioDAO {
 	 */
 	protected void criaConta(String user, String pass) {
 		pass=encriptaSenha(pass);
+		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
+		
 	}
 	
 	/**
