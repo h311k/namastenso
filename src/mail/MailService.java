@@ -15,48 +15,67 @@ public class MailService {
 	private String porta;
 	private String usuario;
 	private String senha;
-	private String remetente;
+	
+	public MailService(int idUsuario, String nome, String host, String porta, String usuario, String senha) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nome = nome;
+		this.host = host;
+		this.porta = porta;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+	
+	public MailService() {
+		
+	}
+
 	protected int getIdUsuario() {
 		return idUsuario;
 	}
+
 	protected void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
+
 	protected String getNome() {
 		return nome;
 	}
+
 	protected void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	protected String getHost() {
 		return host;
 	}
+
 	protected void setHost(String host) {
 		this.host = host;
 	}
+
 	protected String getPorta() {
 		return porta;
 	}
+
 	protected void setPorta(String porta) {
 		this.porta = porta;
 	}
+
 	protected String getUsuario() {
 		return usuario;
 	}
+
 	protected void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+
 	protected String getSenha() {
 		return senha;
 	}
+
 	protected void setSenha(String senha) {
 		this.senha = senha;
-	}
-	protected String getRemetente() {
-		return remetente;
-	}
-	protected void setRemetente(String remetente) {
-		this.remetente = remetente;
 	}
 	
 }

@@ -12,6 +12,7 @@
 
 		<!-- entidades mapeadas -->
 		<class>usuario.Usuario</class>
+		<class>mail.mailService</class>
 
 		<properties>
 			<!-- dados da conexao -->

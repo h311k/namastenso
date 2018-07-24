@@ -9,6 +9,8 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import mail.MailServiceDAO;
+
 @ManagedBean
 @SessionScoped
 public class UsuarioBean {
@@ -57,10 +59,11 @@ public class UsuarioBean {
 		if(u==null) {
 			requestContext.addCallbackParam("retorno", "Usuário ou senha inválidos");
 		} else {
-			this.setIdUsuario(u.getIdUsuario());
-			this.setEmail(u.getEmail());
-			this.setDataInscricao(u.getDataInscricao());
+			idUsuario = u.getIdUsuario();
+			email = u.getEmail();
+			dataInscricao = u.getDataInscricao();
 			requestContext.addCallbackParam("retorno", "ok");
+			requestContext.getAttributes().put("idUsuario", idUsuario);
 			//inserir condicao caso o usuario não esteja ativo e redirecionar para a futura pagina de cadastro.
 			try {
 				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
