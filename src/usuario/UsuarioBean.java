@@ -9,8 +9,6 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
-import mail.MailServiceDAO;
-
 @ManagedBean
 @SessionScoped
 public class UsuarioBean {
