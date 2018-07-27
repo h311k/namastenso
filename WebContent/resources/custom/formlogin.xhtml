@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+<composite:interface>
+
+</composite:interface>
+<composite:implementation>
+	<div class="page-content container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="login-wrapper">
+			        <div class="box">
+			            <div class="content-wrap">
+			                <h6>Log In</h6>
+			                <input id="user" class="form-control" type="text" placeholder="E-mail"/>			            
+			                <input id="pass" class="form-control" type="password" placeholder="Password"/>
+			                <div class="action">
+			                    <a id="btn-login" class="btn btn-primary signup">Login</a>
+			                </div>                
+			            </div>
+			        </div>
+
+			        <div class="already">
+			            <p>Quer participar?</p>
+			            <a href="signup.html">Crie uma conta agora mesmo</a>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<h:form>
+		<p:remoteCommand name="efetuaLogin" actionListener="#{usuarioBean.efetuaLogin()}" oncomplete="getAutenticaUsuarioCallback(xhr, status, args) "/>
+	</h:form>
+</composite:implementation>
+</html>

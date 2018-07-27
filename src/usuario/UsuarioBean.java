@@ -47,6 +47,7 @@ public class UsuarioBean {
 	}
 
 
+	@SuppressWarnings("deprecation")
 	public void efetuaLogin() {
 		Map<String, String> requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String usuario = requestParamMap.get("user");
