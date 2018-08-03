@@ -2,6 +2,8 @@ package usuario;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,9 +48,19 @@ public class UsuarioDAO {
 	 * Cria a conta desativada de usuario e envia email para ativacao
 	 */
 	protected void criaConta(String user, String pass) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();  
 		pass=encriptaSenha(pass);
+		Usuario usuario = new Usuario();
+		usuario.setEmail(user);
+		usuario.setPass(pass);
+		usuario.setAtivo(false);
+		usuario.setDataInscricao(sdf.format(now));
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
-		
+		manager.getTransaction().begin();
+		manager.persist(usuario);
+		manager.getTransaction().commit();
+		manager.close();
 	}
 	
 	/**

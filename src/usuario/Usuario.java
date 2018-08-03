@@ -28,12 +28,19 @@ public class Usuario {
 	private String email;
 	private boolean ativo;
 	private String dataInscricao;
+	private String pass;
 	
 	public int getIdUsuario() {
 		return idUsuario;
 	}
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public String getEmail() {
 		return email;
