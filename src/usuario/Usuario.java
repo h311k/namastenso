@@ -28,7 +28,7 @@ public class Usuario {
 	private String email;
 	private boolean ativo;
 	private String dataInscricao;
-	private String pass;
+	private String senha;
 	
 	public int getIdUsuario() {
 		return idUsuario;
@@ -36,11 +36,11 @@ public class Usuario {
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	public String getPass() {
-		return pass;
+	public String getSenha() {
+		return senha;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	public String getEmail() {
 		return email;

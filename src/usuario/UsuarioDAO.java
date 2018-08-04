@@ -31,15 +31,12 @@ public class UsuarioDAO {
 		
 		manager.getTransaction().begin();
 		
-		List<Usuario> usuario = query.getResultList();
+		Usuario usuario = (Usuario) query.getSingleResult();
 		
 		manager.getTransaction().commit();
 		manager.close();
-		if(!usuario.isEmpty()) {
-			return usuario.get(0);
-		} else {
-			return null;
-		}
+		
+		return usuario;
 		
 	}
 	
@@ -53,7 +50,7 @@ public class UsuarioDAO {
 		pass=encriptaSenha(pass);
 		Usuario usuario = new Usuario();
 		usuario.setEmail(user);
-		usuario.setPass(pass);
+		usuario.setSenha(pass);
 		usuario.setAtivo(false);
 		usuario.setDataInscricao(sdf.format(now));
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
