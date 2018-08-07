@@ -15,7 +15,9 @@ $(document).ready(function() {
 		window.getAutenticaUsuarioCallback = function(xhr, status, args) {
 			var retorno = args.retorno;
 			if(retorno!="ok"){
-				alert(retorno);
+				$('#login-form').prepend('<div class="alert alert-danger"><strong>Ops!</strong> Seu nome de usuário ou sua senha estão incorretos.</div>');
+				$('#user').val('');
+				$('#pass').val('');
 			}
 		}
 	});

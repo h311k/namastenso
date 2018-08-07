@@ -56,14 +56,14 @@ public class UsuarioBean {
 		Usuario u = ud.validaLogin(usuario, pass);
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 		if(u==null) {
-			requestContext.addCallbackParam("retorno", "Usuário ou senha inválidos");
+			requestContext.addCallbackParam("retorno", "falha");
 		} else {
 			idUsuario = u.getIdUsuario();
 			email = u.getEmail();
 			dataInscricao = u.getDataInscricao();
 			requestContext.addCallbackParam("retorno", "ok");
 			requestContext.getAttributes().put("idUsuario", idUsuario);
-			//inserir condicao caso o usuario não esteja ativo e redirecionar para a futura pagina de cadastro.
+			//inserir condicao caso o usuario nao esteja ativo e redirecionar para a futura pagina de cadastro.
 			try {
 				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 			} catch (IOException e) {
