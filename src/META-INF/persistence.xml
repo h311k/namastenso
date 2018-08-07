@@ -16,13 +16,21 @@
 
 		<properties>
 			<!-- dados da conexao -->
-			<property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<!-- <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=namastenso" />
 			<property name="javax.persistence.jdbc.user" value="namastenso" />
+			<property name="javax.persistence.jdbc.password" value="1985H311kVieir@" /> -->
+			
+			<!-- Dados de conexao MySQL -->
+			
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://namastenso.mysql.uhserver.com:3306/namastenso?useTimezone=true&amp;serverTimezone=UTC" />
+			<property name="javax.persistence.jdbc.user" value="javaee" />
 			<property name="javax.persistence.jdbc.password" value="1985H311kVieir@" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 
 			<!-- propriedades do hibernate -->
-			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
+			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" /> -->
 			<!-- <property name="hibernate.show_sql" value="true" /> -->
 			<property name="hibernate.format_sql" value="true" />
 
