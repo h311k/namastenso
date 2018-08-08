@@ -82,4 +82,18 @@ public class UsuarioBean {
 			}
 		}
 	}
+	
+	@SuppressWarnings("deprecation")
+	public void validaEmail() {
+		Map<String, String> requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		String email = requestParamMap.get("email");
+		UsuarioDAO ud = new UsuarioDAO();
+		boolean existente = ud.validaEmail(email);
+		if(existente) {
+			requestContext.addCallbackParam("retorno", "existente");
+		} else {
+			requestContext.addCallbackParam("retorno", "inexistente");
+		}		
+	}
 }

@@ -4,7 +4,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,16 +27,28 @@ public class UsuarioDAO {
 		Query query = manager.createNamedQuery("AUTENTICA_USUARIO", Usuario.class);
 		query.setParameter("email", user);
 		query.setParameter("senha", pass);
-		
 		manager.getTransaction().begin();
-		
 		Usuario usuario = (Usuario) query.getSingleResult();
-		
 		manager.getTransaction().commit();
 		manager.close();
 		
 		return usuario;
 		
+	}
+	
+	protected boolean validaEmail(String email) {
+		boolean existente=false;
+		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
+		Query query = manager.createNamedQuery("VERIFICA_EXISTENCIA_USUARIO", Usuario.class);
+		query.setParameter("email", email);
+		manager.getTransaction().begin();
+		Usuario usuario = (Usuario) query.getSingleResult();
+		manager.getTransaction().commit();
+		manager.close();
+		if(usuario!=null) {
+			existente=true;
+		}
+		return existente;
 	}
 	
 	/**
