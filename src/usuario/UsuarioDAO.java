@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import conexao.FabricaConexao;
@@ -27,26 +28,25 @@ public class UsuarioDAO {
 		Query query = manager.createNamedQuery("AUTENTICA_USUARIO", Usuario.class);
 		query.setParameter("email", user);
 		query.setParameter("senha", pass);
-		manager.getTransaction().begin();
-		Usuario usuario = (Usuario) query.getSingleResult();
-		manager.getTransaction().commit();
-		manager.close();
-		
-		return usuario;
-		
+		Usuario usuario;
+		try {
+			usuario = (Usuario) query.getSingleResult();
+		} catch(NoResultException e) {
+			usuario=null;
+		}	
+		return usuario;	
 	}
 	
 	protected boolean validaEmail(String email) {
-		boolean existente=false;
+		boolean existente;
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
 		Query query = manager.createNamedQuery("VERIFICA_EXISTENCIA_USUARIO", Usuario.class);
 		query.setParameter("email", email);
-		manager.getTransaction().begin();
-		Usuario usuario = (Usuario) query.getSingleResult();
-		manager.getTransaction().commit();
-		manager.close();
-		if(usuario!=null) {
+		try {
+			query.getSingleResult();
 			existente=true;
+		} catch(NoResultException e) {
+			existente=false;
 		}
 		return existente;
 	}
