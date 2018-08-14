@@ -29,7 +29,10 @@
 		</div>
 	</div>
 	<h:form>
-		<p:remoteCommand name="validaEmail" actionListener="#{usuarioBean.validaEmail()}" oncomplete="getValidaEmailCallback(xhr, status, args) "/>
+		<p:remoteCommand name="validaEmail" actionListener="#{usuarioBean.validaEmail()}" oncomplete="getValidaEmailCallback(xhr, status, args)"/>
+	</h:form>
+	<h:form>
+		<p:remoteCommand name="criaUsuario" actionListener="#{usuarioBean.criaUsuario()}" oncomplete="getCriaUsuarioCallback(xhr, status, args)"/>
 	</h:form>
 </body>
 </html>

@@ -16,6 +16,7 @@ public class UsuarioBean {
 	private int idUsuario;
 	private String email;
 	private String dataInscricao;
+	private boolean ativo;
 
 	public int getIdUsuario() {
 		return idUsuario;
@@ -47,6 +48,16 @@ public class UsuarioBean {
 	}
 
 
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+
 	@SuppressWarnings("deprecation")
 	public void efetuaLogin() {
 		Map<String, String> requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -61,11 +72,16 @@ public class UsuarioBean {
 			idUsuario = u.getIdUsuario();
 			email = u.getEmail();
 			dataInscricao = u.getDataInscricao();
+			ativo = u.isAtivo();
 			requestContext.addCallbackParam("retorno", "ok");
 			requestContext.getAttributes().put("idUsuario", idUsuario);
 			//inserir condicao caso o usuario nao esteja ativo e redirecionar para a futura pagina de cadastro.
 			try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+				if(ativo) {
+					FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+				} else {
+					requestContext.addCallbackParam("retorno", "desativado");
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -95,5 +111,19 @@ public class UsuarioBean {
 		} else {
 			requestContext.addCallbackParam("retorno", "inexistente");
 		}		
+	}
+	
+	public void criaUsuario() {
+		Map<String, String> requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		String email = requestParamMap.get("email");
+		String senha = requestParamMap.get("senha");
+		UsuarioDAO ud = new UsuarioDAO();
+		ud.criaConta(email, senha);
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

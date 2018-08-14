@@ -5,18 +5,27 @@
 $(document).ready(function() {
 	
 	$('#btn-login').click(function() {
+		$('#erro-login').remove();
+		$('#desativado-login').remove();
+		
 		user = $('#user').val();
 		pass = $('#pass').val();
 		
 		if(user=="" ) {
 			alert("O campo de usuário está em branco");
 		} else {
+			$('#loader-frame').show();
 			efetuaLogin([{name:'user', value:user},{name:'pass', value:pass}]);
 		}
 		window.getAutenticaUsuarioCallback = function(xhr, status, args) {
+			$('#loader-frame').hide();
 			var retorno = args.retorno;
 			if(retorno!="ok"){
-				$('#login-form').prepend('<div class="alert alert-danger"><strong>Ops!</strong> Seu nome de usuário ou sua senha estão incorretos.</div>');
+				if(retorno=="falha"){
+					$('#login-form').prepend('<div id="erro-login" class="alert alert-danger"><strong>Ops!</strong> Seu nome de usuário ou sua senha estão incorretos.</div>');
+				} else {
+					$('#login-form').prepend('<div id="desativado-login" class="alert alert-warning"><strong>Ops!</strong> Sua conta ainda está inativa. Aguarde o e-mail de ativação.</div>');
+				}
 				$('#user').val('');
 				$('#pass').val('');
 			}
@@ -32,14 +41,32 @@ $(document).ready(function() {
 		email = $('#create-user-user').val();
 		
 		if(email!="") {
+			$('#loader-frame').show();
 			validaEmail([{name:'email',value:email}]);
 		}
 		window.getValidaEmailCallback = function(xhr, status, args) {
+			$('#loader-frame').hide();
 			var retorno = args.retorno;
 			if(retorno=='existente') {
 				$('#create-user-form').prepend('<div id="email-existente" class="alert alert-danger"><strong>Ops!</strong> Esse e-mail já está cadastrado. Escolha outro e-mail.</div>');
 			} else {
 				$('#create-user-form').prepend('<div id="email-disponivel" class="alert alert-success"><strong>Oba!</strong> Esse e-mail está disponível para cadastro!</div>');
+			}
+		}
+	});
+	
+	$('#btn-criar-conta').click(function(){
+		email = $('#create-user-user').val();
+		senha = $('#create-user-pass').val();
+		
+		if(senha=="") {
+			alert("O campo de senha não pode ficar em branco");
+			$('#create-user-pass').focus();
+		} else {
+			$('#loader-frame').show();
+			criaUsuario([{name:'email', value:email},{name:'senha', value:senha}]);
+			window.getCriaUsuarioCallback = function(xhr, status, args) {
+				$('#loader-frame').hide();
 			}
 		}
 	});
