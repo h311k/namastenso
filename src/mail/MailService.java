@@ -1,14 +1,22 @@
 package mail;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="mailService")
+@NamedQueries({
+	@NamedQuery(name="BUSCA_CONTA_EMAIL_POR_NOME", query="from mailService where nome=:nome")
+})
 public class MailService {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUsuario;
 	private String nome;
 	private String host;

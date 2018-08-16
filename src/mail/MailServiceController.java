@@ -19,10 +19,7 @@ public class MailServiceController {
 	public void enviaEmail(int idUsuario, String remetente, String destinatario, String assunto, String mensagem) {
 		
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
-		manager.getTransaction().begin();
 		MailService ms = manager.find(MailService.class, idUsuario);
-		manager.getTransaction().commit();
-		manager.close();
 		Properties props = new Properties();
 		
 		props.put("mail.smtp.host", ms.getHost());

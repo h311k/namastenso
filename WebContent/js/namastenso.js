@@ -14,11 +14,11 @@ $(document).ready(function() {
 		if(user=="" ) {
 			alert("O campo de usuário está em branco");
 		} else {
-			$('#loader-frame').show();
+			$('#loader-frame').fadeIn(500);
 			efetuaLogin([{name:'user', value:user},{name:'pass', value:pass}]);
 		}
 		window.getAutenticaUsuarioCallback = function(xhr, status, args) {
-			$('#loader-frame').hide();
+			$('#loader-frame').fadeOut(500);
 			var retorno = args.retorno;
 			if(retorno!="ok"){
 				if(retorno=="falha"){
@@ -45,7 +45,7 @@ $(document).ready(function() {
 			validaEmail([{name:'email',value:email}]);
 		}
 		window.getValidaEmailCallback = function(xhr, status, args) {
-			$('#loader-frame').hide();
+			$('#loader-frame').fadeOut(500);
 			var retorno = args.retorno;
 			if(retorno=='existente') {
 				$('#create-user-form').prepend('<div id="email-existente" class="alert alert-danger"><strong>Ops!</strong> Esse e-mail já está cadastrado. Escolha outro e-mail.</div>');
@@ -63,10 +63,16 @@ $(document).ready(function() {
 			alert("O campo de senha não pode ficar em branco");
 			$('#create-user-pass').focus();
 		} else {
-			$('#loader-frame').show();
+			$('#loader-frame').fadeIn(500);
 			criaUsuario([{name:'email', value:email},{name:'senha', value:senha}]);
 			window.getCriaUsuarioCallback = function(xhr, status, args) {
-				$('#loader-frame').hide();
+				$('#loader-frame').fadeOut(500);
+				var retorno = args.retorno;
+				if(retorno=="ok"){
+					alert("Sua conta foi cadastrada.\nEnviaremos um e-mail com instruções para você para ativar seu acesso, ok?");
+				} else {
+					alert("Algo deu errado no cadastro, mas a culpa foi nossa.\nPode tentar novamente mais tarde, por favor?");
+				}
 			}
 		}
 	});

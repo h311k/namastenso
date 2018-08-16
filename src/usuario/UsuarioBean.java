@@ -1,6 +1,7 @@
 package usuario;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
@@ -71,7 +72,7 @@ public class UsuarioBean {
 		} else {
 			idUsuario = u.getIdUsuario();
 			email = u.getEmail();
-			dataInscricao = u.getDataInscricao();
+			dataInscricao = u.getDataInscricao().format(DateTimeFormatter.ofPattern("dd/MM/dd HH:mm:ss"));
 			ativo = u.isAtivo();
 			requestContext.addCallbackParam("retorno", "ok");
 			requestContext.getAttributes().put("idUsuario", idUsuario);
@@ -113,6 +114,7 @@ public class UsuarioBean {
 		}		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void criaUsuario() {
 		Map<String, String> requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		RequestContext requestContext = RequestContext.getCurrentInstance();
@@ -121,8 +123,10 @@ public class UsuarioBean {
 		UsuarioDAO ud = new UsuarioDAO();
 		ud.criaConta(email, senha);
 		try {
+			requestContext.addCallbackParam("retorno", "ok");
 			FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
 		} catch (IOException e) {
+			requestContext.addCallbackParam("retorno", "erro");
 			e.printStackTrace();
 		}
 	}

@@ -2,9 +2,7 @@ package usuario;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +39,7 @@ public class UsuarioDAO {
 	protected boolean validaEmail(String email) {
 		boolean existente;
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
-		Query query = manager.createNamedQuery("VERIFICA_EXISTENCIA_USUARIO", Usuario.class);
+		Query query = manager.createNamedQuery("BUSCA_USUARIO_POR_EMAIL", Usuario.class);
 		query.setParameter("email", email);
 		try {
 			query.getSingleResult();
@@ -63,12 +61,13 @@ public class UsuarioDAO {
 		usuario.setEmail(user);
 		usuario.setSenha(pass);
 		usuario.setAtivo(false);
-		usuario.setDataInscricao(now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+		usuario.setDataInscricao(now);
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
 		manager.getTransaction().begin();
 		manager.persist(usuario);
 		manager.getTransaction().commit();
 		manager.close();
+		
 	}
 	
 	/**
