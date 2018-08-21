@@ -6,11 +6,14 @@ import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import conexao.FabricaConexao;
+import mail.ServicoEmailController;
+import util.DadosServidor;
 
 public class UsuarioDAO {
 
@@ -66,8 +69,30 @@ public class UsuarioDAO {
 		manager.getTransaction().begin();
 		manager.persist(usuario);
 		manager.getTransaction().commit();
-		manager.close();
-		
+		manager.close();	
+		enviaEmailAtivacao(usuario);
+	}
+	
+	private void enviaEmailAtivacao(Usuario usuario) {
+		ServicoEmailController sec = new ServicoEmailController();
+		//Utiliza a conta de email do admin para enviar email de ativacao
+		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
+		Query query = manager.createNamedQuery("BUSCA_USUARIO_POR_EMAIL", Usuario.class);
+		query.setParameter("email", usuario.getEmail());
+		try {
+			usuario = (Usuario)query.getSingleResult();
+		} catch(NoResultException e) {
+			e.printStackTrace();
+		}
+		String url = DadosServidor.getUrlBase();
+		url+="/ativar-conta/idUsuario="+usuario.getIdUsuario();
+		String mensagem = 
+				"<h3>Olá.</h3>"
+				+"<br/><br/>"
+				+"<p>Obrigado por se cadastrar no Namastenso.</p>"
+				+"<br/>"
+				+"<p>Para ativar sua conta e criar seu perfil, <a href="+url+">clique aqui<a></p>";
+		sec.enviaEmail(1, "Webmaster@namastenso.com", usuario.getEmail(), "Ative sua conta", mensagem);
 	}
 	
 	/**

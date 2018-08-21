@@ -12,7 +12,7 @@
 
 		<!-- entidades mapeadas -->
 		<class>usuario.Usuario</class>
-		<class>mail.mailService</class>
+		<class>mail.ServicoEmail</class>
 
 		<properties>
 			<!-- dados da conexao -->

@@ -5,12 +5,12 @@ import javax.persistence.EntityManager;
 import conexao.FabricaConexao;
 import security.Security;
 
-public class MailServiceDAO {
+public class ServicoEmailDAO {
 
 	public void addUpdateMailService(int idUsuario, String nome, String host, String porta, String usuario, String senha) {
 		Security sec = new Security();
 		senha=sec.encode(senha);
-		MailService ms = new MailService(idUsuario, nome, host, porta, usuario, senha);
+		ServicoEmail ms = new ServicoEmail(idUsuario, nome, host, porta, usuario, senha);
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
 		manager.getTransaction().begin();
 		manager.merge(ms);
@@ -20,7 +20,7 @@ public class MailServiceDAO {
 
 	public void removeMailService(int idUsuario) {
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
-		MailService ms = manager.find(MailService.class, idUsuario);	
+		ServicoEmail ms = manager.find(ServicoEmail.class, idUsuario);	
 		if(ms!=null) {
 			manager.getTransaction().begin();
 			manager.remove(ms);

@@ -13,13 +13,15 @@ import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 
 import conexao.FabricaConexao;
+import security.Security;
 
-public class MailServiceController {
+public class ServicoEmailController {
 
 	public void enviaEmail(int idUsuario, String remetente, String destinatario, String assunto, String mensagem) {
 		
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
-		MailService ms = manager.find(MailService.class, idUsuario);
+		ServicoEmail ms = manager.find(ServicoEmail.class, idUsuario);
+		Security security = new Security();
 		Properties props = new Properties();
 		
 		props.put("mail.smtp.host", ms.getHost());
@@ -31,7 +33,7 @@ public class MailServiceController {
 
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(ms.getUsuario(), ms.getSenha());
+				return new PasswordAuthentication(ms.getUsuario(),security.decode(ms.getSenha()));
 			}
 		});
 		

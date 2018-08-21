@@ -9,11 +9,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="mailService")
+@Table(name="servicosEmail")
 @NamedQueries({
-	@NamedQuery(name="BUSCA_CONTA_EMAIL_POR_NOME", query="from mailService where nome=:nome")
+	@NamedQuery(name="BUSCA_CONTA_EMAIL_POR_NOME", query="from ServicoEmail where nome=:nome")
 })
-public class MailService {
+public class ServicoEmail {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class MailService {
 	private String usuario;
 	private String senha;
 	
-	public MailService(int idUsuario, String nome, String host, String porta, String usuario, String senha) {
+	public ServicoEmail(int idUsuario, String nome, String host, String porta, String usuario, String senha) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nome = nome;
@@ -34,7 +34,7 @@ public class MailService {
 		this.senha = senha;
 	}
 	
-	public MailService() {
+	public ServicoEmail() {
 		
 	}
 
