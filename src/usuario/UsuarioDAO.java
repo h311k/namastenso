@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -72,7 +71,34 @@ public class UsuarioDAO {
 		manager.close();	
 		enviaEmailAtivacao(usuario);
 	}
+	/**
+	 * Ativa usuario para a criacao de perfil
+	 * 
+	 * @param id - ID do usuario passado por parametro na URL do email de ativacao
+	 * 
+	 * */
+	protected boolean ativaUsuario(int id) {
+		boolean retorno;
+		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
+		Usuario usuario = manager.find(Usuario.class, id);
+		try {
+			usuario.setAtivo(true);
+			manager.getTransaction().begin();
+			manager.merge(usuario);
+			manager.getTransaction().commit();
+			manager.close();
+			retorno=true;
+		} catch(NoResultException e) {
+			retorno=false;
+		}
+		return retorno;
+	}
 	
+	/**
+	 *
+	 * Envia e-mail de ativacao para o usuario no momento da criacao da conta
+	 * @param usuario - email do usuario criado
+	 */
 	private void enviaEmailAtivacao(Usuario usuario) {
 		ServicoEmailController sec = new ServicoEmailController();
 		//Utiliza a conta de email do admin para enviar email de ativacao
@@ -85,7 +111,7 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 		String url = DadosServidor.getUrlBase();
-		url+="/ativar-conta/idUsuario="+usuario.getIdUsuario();
+		url+="/ativar-conta.xhtml?idUsuario="+usuario.getIdUsuario();
 		String mensagem = 
 				"<h3>Olá.</h3>"
 				+"<br/><br/>"
@@ -94,6 +120,7 @@ public class UsuarioDAO {
 				+"<p>Para ativar sua conta e criar seu perfil, <a href="+url+">clique aqui<a></p>";
 		sec.enviaEmail(1, "Webmaster@namastenso.com", usuario.getEmail(), "Ative sua conta", mensagem);
 	}
+	
 	
 	/**
 	 * Converte o valor inserido para chave MD5.
