@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:custom="http://java.sun.com/jsf/composite/custom"> 
+
+<h:head><custom:globalimports/><custom:usuarioimports/></h:head>
+<body class="login-bg">
+	<custom:cabecalho titulo_pagina="Criar Conta"/>	
+	<div class="page-content container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="login-wrapper">
+			        <div class="box">
+			            <div id="create-user-form" class="content-wrap">
+			                <h6>Criar Conta</h6>
+			                <input id="create-user-user" class="form-control" type="text" placeholder="usuario@exemplo.com"/>			            
+			                <input id="create-user-pass" class="form-control" type="password" placeholder="1aSenh@fort3"/>
+			                <div class="action">
+			                    <a id="btn-criar-conta" class="btn btn-primary signup">Criar Conta</a>		                   
+			                </div>                
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<h:form>
+		<p:remoteCommand name="validaEmail" actionListener="#{usuarioBean.validaEmail()}" oncomplete="getValidaEmailCallback(xhr, status, args)"/>
+	</h:form>
+	<h:form>
+		<p:remoteCommand name="criaUsuario" actionListener="#{usuarioBean.criaUsuario()}" oncomplete="getCriaUsuarioCallback(xhr, status, args)"/>
+	</h:form>
+</body>
+</html>

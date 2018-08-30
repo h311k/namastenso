@@ -9,10 +9,17 @@
 
 <h:head>
 	<custom:globalimports/>
+	<custom:usuarioimports/>
 </h:head>
-<body>
+<body class="ativa-conta">
+	<div id="loader-frame">
+		<div id="loader"></div>
+	</div>
 	<f:metadata>
 		<f:viewParam id="idUsuario" name="idUsuario" value="#{usuarioBean.idUsuario}"/>
 	</f:metadata>
+	<h:form>
+		<p:remoteCommand name="ativaUsuario" actionListener="#{usuarioBean.ativaUsuario()}" oncomplete="getAtivaUsuarioCallback(xhr, status, args)"/>
+	</h:form>
 </body>
 </html>

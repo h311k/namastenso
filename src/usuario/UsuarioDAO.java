@@ -113,7 +113,7 @@ public class UsuarioDAO {
 		String url = DadosServidor.getUrlBase();
 		url+="/ativar-conta.xhtml?idUsuario="+usuario.getIdUsuario();
 		String mensagem = 
-				"<h3>Ol·.</h3>"
+				"<h3>Ol√°.</h3>"
 				+"<br/><br/>"
 				+"<p>Obrigado por se cadastrar no Namastenso.</p>"
 				+"<br/>"
