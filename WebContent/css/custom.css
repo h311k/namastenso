@@ -56,3 +56,9 @@
   from{ bottom:-100px; opacity:0 } 
   to{ bottom:0; opacity:1 }
 }
+#form-perfil label,.btn-dashboard{
+	margin-top: 10px;
+}
+.btn-primary{
+	cursor: pointer;
+}

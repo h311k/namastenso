@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<composite:interface>
+
+</composite:interface>
+<composite:implementation>
+	<div class="col-md-4">
+		<div id="form-perfil" class="content-box">
+			<label>Nome</label>
+			<input id="primeiro-nome" class="form-control" type="text"/>
+			<label>Sobrenome</label>
+			<input id="sobrenome" class="form-control" type="text"/>
+			<label>Email</label>
+			<input id="email" class="form-control" type="text" value="#{usuarioBean.email}" disabled="disabled"/>
+			<label>Biografia</label>
+			<textarea rows="" cols="" class="form-control"/>
+			<div class="action">
+			   <a id="btn-salvar-perfil" class="btn btn-primary signup btn-dashboard">Salvar</a>
+			</div>
+		</div>
+	</div>
+</composite:implementation>
+</html>
