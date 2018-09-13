@@ -9,8 +9,10 @@ $(document).ready(function() {
 	});
 	
 	$('#home').click(function() {
+		$('#conteudo').hide();
 		$.ajax({url:"/namastenso/resources/custom/perfil.xhtml",dataType: "html",success:function(result){
 			$('#conteudo').html(result);
+			$('#conteudo').fadeIn('slow');
 		}});
 	});
 });
