@@ -59,6 +59,6 @@
 #form-perfil label,.btn-dashboard{
 	margin-top: 10px;
 }
-.btn-primary{
+.btn-primary, .input-group-addon{
 	cursor: pointer;
 }

@@ -18,3 +18,15 @@ $(document).ready(function(){
   });
   
 });
+
+/**
+ * Configuracoes globais de calendario
+ */
+
+function formataData(e){
+	$(e).datepicker({
+    	format: 'dd/mm/yyyy',
+    	language: 'pt-BR',
+    	todayHighlight: true
+    });
+}
