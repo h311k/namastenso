@@ -12,11 +12,12 @@
 
 </composite:interface>
 <composite:implementation>
+<h:head></h:head>
 	<div class="col-md-4">
 		<div id="form-perfil" class="content-box">
 			<div class="foto-perfil" img-src="images/Generic-Profile.png">
 				<div id="overlay-foto-perfil">
-      				<p>Editar Foto de Perfil</p>
+      				<p>Carregar Foto de Perfil</p>
     			</div>
 			</div>
 			<label>Nome</label>
@@ -28,15 +29,22 @@
 			<label>Email</label>
 			<input id="email" class="form-control" type="text" value="#{usuarioBean.email}" disabled="disabled"/>
 			<label>Data de Nascimento</label>
-			<div class="input-group date cal-br" >
-  				<input class="form-control" name="event_date" id="data-nascimento" type="text" />
+			<p:calendar class="form-control" pattern="dd-MM-yyyy"/>
+			<!-- <div class="input-group date cal-br" >
+  				<input class="form-control" id="data-nascimento" type="text" />
   				<span class="input-group-addon botao-util"><i class="glyphicon glyphicon-calendar"></i></span>
-			</div>
+			</div> -->
 			<label>Biografia</label>
 			<textarea rows="" cols="" class="form-control"/>
 			<div class="action">
 			   <a id="btn-salvar-perfil" class="btn btn-primary signup btn-dashboard">Salvar</a>
 			</div>
+			<h:form enctype="multipart/form-data" class="form-upload-foto-perfil">
+				<h:inputFile class="input-foto-perfil" value="#{pessoaBean.arquivoFotoPerfil}"/>
+			</h:form>
+			<h:form>
+				<p:remoteCommand name="uploadArquivo" actionListener="#{pessoaBean.importaFoto()}" oncomplete="getImportaFotoCallback(xhr, status, args)"/>
+			</h:form>
 		</div>
 	</div>
 </composite:implementation>

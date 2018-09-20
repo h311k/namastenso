@@ -8,14 +8,17 @@ $(document).ready(function() {
 		$(this).toggleClass('current');
 	});
 	
+	//Meu Perfil
 	$('#home').click(function() {
 		$('#conteudo').hide();
 		$.ajax({url:"/namastenso/resources/custom/perfil.xhtml",dataType: "html",success:function(result){
 			$('#conteudo').html(result);
 			$('#conteudo').fadeIn('slow');
 			formataData($('.cal-br'));
-			$('.foto-perfil').css('background', 'url("'+$('.foto-perfil').attr('img-src')+'")');
-			$('.foto-perfil').css('background-size', 'cover');
+			setFotoPerfil($('.foto-perfil'));
+			carregaFotoPerfil($('.foto-perfil'));
+			salvaFotoPerfil($('.input-foto-perfil'));
+			salvaPerfil($('#btn-salvar-perfil'));
 		}});
 	});
 });

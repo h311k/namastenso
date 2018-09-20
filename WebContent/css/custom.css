@@ -86,3 +86,7 @@
 #overlay-foto-perfil:hover{
   opacity: 1;
 }
+
+.form-upload-foto-perfil{
+	display:none;
+}
