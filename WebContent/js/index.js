@@ -3,9 +3,9 @@
  */
 
 $(document).ready(function() {
+	
 	$('.opt-menu').click(function() {
-		$('.opt-menu').removeClass('current');
-		$(this).addClass('current');
+		$(this).toggleClass('current');
 	});
 	
 	$('#home').click(function() {
@@ -14,6 +14,8 @@ $(document).ready(function() {
 			$('#conteudo').html(result);
 			$('#conteudo').fadeIn('slow');
 			formataData($('.cal-br'));
+			$('.foto-perfil').css('background', 'url("'+$('.foto-perfil').attr('img-src')+'")');
+			$('.foto-perfil').css('background-size', 'cover');
 		}});
 	});
 });

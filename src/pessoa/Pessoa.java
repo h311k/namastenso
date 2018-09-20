@@ -22,6 +22,7 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int idUsuario;
+	private String fotoPerfil;
 	private String primeiroNome;
 	private String sobrenome;
 	private Date dataNascimento;
@@ -37,6 +38,12 @@ public class Pessoa {
 	}
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+	public String getFotoPerfil() {
+		return fotoPerfil;
+	}
+	public void setFotoPerfil(String fotoPerfil) {
+		this.fotoPerfil = fotoPerfil;
 	}
 	public String getPrimeiroNome() {
 		return primeiroNome;
