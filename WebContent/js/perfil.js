@@ -2,6 +2,10 @@
  * Scripts de perfil
  */
 
+function formataCalendario(e) {
+	$(e).addClass('form-control');
+}
+
 function setFotoPerfil(e) {
 	$(e).css('background', 'url("'+$('.foto-perfil').attr('img-src')+'")');
 	$(e).css('background-size', 'cover');
@@ -16,7 +20,6 @@ function carregaFotoPerfil(e) {
 function salvaFotoPerfil(e) {
 	$(e).change(function(){
 		uploadArquivo();
-		console.log('Chama o método para salvar a foto');
 	});
 }
 
