@@ -17,6 +17,7 @@ public class PessoaBean {
 	private String fotoPerfil = "images/Generic-Profile.png";
 	private Part arquivoFotoPerfil;
 	private String primeiroNome;
+	private String apelido;
 	private String sobrenome;
 	private Date dataNascimento;
 	private String biografia;
@@ -50,6 +51,12 @@ public class PessoaBean {
 	}
 	public void setPrimeiroNome(String primeiroNome) {
 		this.primeiroNome = primeiroNome;
+	}
+	public String getApelido() {
+		return apelido;
+	}
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
 	}
 	public String getSobrenome() {
 		return sobrenome;

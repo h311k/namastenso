@@ -2,6 +2,14 @@
  * Scripts de perfil
  */
 
+function instanciaPerfil(calendario,fotoPerfil,inputFotoPerfil,btnSalvaPerfil) {
+	formataCalendario(calendario);
+	setFotoPerfil(fotoPerfil);
+	carregaFotoPerfil(fotoPerfil);
+	salvaFotoPerfil(inputFotoPerfil);
+	salvaPerfil(btnSalvaPerfil);
+}
+
 function formataCalendario(e) {
 	$(e).addClass('form-control');
 }

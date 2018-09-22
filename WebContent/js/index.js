@@ -13,12 +13,8 @@ $(document).ready(function() {
 		$('#conteudo').hide();
 		$.ajax({url:"/namastenso/resources/custom/perfil.xhtml",dataType: "html",success:function(result){
 			$('#conteudo').html(result);
+			instanciaPerfil($('.box-calendario input'),$('.foto-perfil'),$('.input-foto-perfil'),$('#btn-salvar-perfil'));
 			$('#conteudo').fadeIn('slow');
-			formataCalendario($('.box-calendario input'));
-			setFotoPerfil($('.foto-perfil'));
-			carregaFotoPerfil($('.foto-perfil'));
-			salvaFotoPerfil($('.input-foto-perfil'));
-			salvaPerfil($('#btn-salvar-perfil'));
 		}});
 	});
 });
