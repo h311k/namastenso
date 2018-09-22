@@ -27,7 +27,7 @@ function carregaFotoPerfil(e) {
 
 function salvaFotoPerfil(e) {
 	$(e).change(function(){
-		uploadArquivo();
+		$('.executa-upload').click();
 	});
 }
 

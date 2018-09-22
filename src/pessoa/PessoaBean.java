@@ -1,9 +1,6 @@
 package pessoa;
 
-import java.io.IOException;
 import java.util.Date;
-import java.util.Scanner;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.Part;
@@ -78,12 +75,6 @@ public class PessoaBean {
 	}
 	
 	public void importaFoto() {
-		try {
-			System.out.println(arquivoFotoPerfil.getSubmittedFileName());
-			System.out.println(arquivoFotoPerfil.getSize());
-			String conteudo = new Scanner(arquivoFotoPerfil.getInputStream()).useDelimiter("\\A").next();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		System.out.println(arquivoFotoPerfil.getSubmittedFileName());
 	}
 }

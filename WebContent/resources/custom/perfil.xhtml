@@ -21,29 +21,25 @@
     			</div>
 			</div>
 			<label>Nome</label>
-			<input id="primeiro-nome" class="form-control" type="text"/>
+			<input id="primeiro-nome" class="form-control" type="text" value="#{pessoaBean.primeiroNome}"/>
 			<label>Apelido</label>
-			<input id="apelido" class="form-control" type="text"/>
+			<input id="apelido" class="form-control" type="text" value="#{pessoaBean.apelido}"/>
 			<label>Sobrenome</label>
-			<input id="sobrenome" class="form-control" type="text"/>
+			<input id="sobrenome" class="form-control" type="text" value="#{pessoaBean.sobrenome}"/>
 			<label>Email</label>
 			<input id="email" class="form-control" type="text" value="#{usuarioBean.email}" disabled="disabled"/>
 			<label>Data de Nascimento</label>
-			<p:calendar class="box-calendario" pattern="dd-MM-yyyy"/>
-			<!-- <div class="input-group date cal-br" >
-  				<input class="form-control" id="data-nascimento" type="text" />
-  				<span class="input-group-addon botao-util"><i class="glyphicon glyphicon-calendar"></i></span>
-			</div> -->
+			<p:calendar class="box-calendario" pattern="dd/MM/yyyy" value="#{pessoaBean.dataNascimento}"/>
 			<label>Biografia</label>
 			<textarea rows="" cols="" class="form-control"/>
 			<div class="action">
 			   <a id="btn-salvar-perfil" class="btn btn-primary signup btn-dashboard">Salvar</a>
 			</div>
-			<h:form enctype="multipart/form-data" class="form-upload-foto-perfil">
+			<h:form id="form-upload-perfil" enctype="multipart/form-data" class="form-upload-foto-perfil">
 				<h:inputFile class="input-foto-perfil" value="#{pessoaBean.arquivoFotoPerfil}"/>
-			</h:form>
-			<h:form>
-				<p:remoteCommand name="uploadArquivo" actionListener="#{pessoaBean.importaFoto()}" oncomplete="getImportaFotoCallback(xhr, status, args)"/>
+				<h:commandButton class="executa-upload" action="#{pessoaBean.importaFoto()}">
+					<f:ajax execute="@form" render="@none"/>
+				</h:commandButton>
 			</h:form>
 		</div>
 	</div>
