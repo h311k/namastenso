@@ -31,9 +31,21 @@ function salvaFotoPerfil(e) {
 	});
 }
 
-
 function salvaPerfil(e) {
 	$(e).click(function(){
 		console.log('Aqui entra o método para salvar os dados de perfil');
 	});
+}
+
+function atualizaFoto(data) {
+	if(data.status=='success'){
+		if(data.responseText.indexOf('<error>') >=0){
+			//Tratamento de erro no upload
+			console.log('erro na importação');
+			console.log(data);
+		} else {
+			console.log('sucesso');
+			console.log(data);
+		}
+	} 
 }
