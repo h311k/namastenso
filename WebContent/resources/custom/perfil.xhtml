@@ -9,13 +9,13 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <composite:interface>
-
+	
 </composite:interface>
 <composite:implementation>
 <h:head></h:head>
 	<div class="col-md-4">
 		<div id="form-perfil" class="content-box">
-			<div class="foto-perfil" img-src="images/Generic-Profile.png">
+			<div class="foto-perfil" img-src="#{pessoaBean.fotoPerfil}">
 				<div id="overlay-foto-perfil">
       				<p>Carregar Foto de Perfil</p>
     			</div>
@@ -38,6 +38,7 @@
 			<h:form id="form-upload-perfil" enctype="multipart/form-data" class="form-upload-foto-perfil">
 				<h:inputFile class="input-foto-perfil" value="#{pessoaBean.arquivoFotoPerfil}"/>
 				<h:commandButton class="executa-upload" action="#{pessoaBean.importaFoto()}">
+					<f:param name="idUsuario" value="#{usuarioBean.idUsuario}"/>
 					<f:ajax execute="@form" render="@none" onevent="atualizaFoto" />
 				</h:commandButton>
 			</h:form>
