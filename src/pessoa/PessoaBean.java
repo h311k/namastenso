@@ -1,22 +1,18 @@
 package pessoa;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
-
-import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @SessionScoped
 public class PessoaBean {
 
-	private int id;
+	@ManagedProperty(value="#{usuarioBean.idUsuario}")
 	private int idUsuario;
 	private String fotoPerfil = "images/Generic-Profile.png";
 	private Part arquivoFotoPerfil;
@@ -26,12 +22,6 @@ public class PessoaBean {
 	private Date dataNascimento;
 	private String biografia;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public int getIdUsuario() {
 		return idUsuario;
 	}
