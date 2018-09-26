@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.Part;
 
+import org.primefaces.context.RequestContext;
+
 @ManagedBean
 @SessionScoped
 public class PessoaBean {
@@ -72,12 +74,11 @@ public class PessoaBean {
 	}
 	
 	public void importaFoto() {
-		System.out.println(arquivoFotoPerfil.getSubmittedFileName());
-		System.out.println(arquivoFotoPerfil.getContentType());
 		//Entra aqui metodo de validacao e renomeio de arquivo do perfil
 		try {
 			if(arquivoFotoPerfil.getContentType().equals("image/jpeg")) {
-				arquivoFotoPerfil.write("C:\\AMD\\imagem.jpg");
+				fotoPerfil = "C:\\Desenvolvimento\\arquivos\\perfil\\"+idUsuario+".jpg";
+				arquivoFotoPerfil.write(fotoPerfil);
 			} else {
 				throw new RuntimeException("Arquivo com extensão não suportada.");
 			}	
@@ -86,4 +87,10 @@ public class PessoaBean {
 			//e.printStackTrace();
 		}
 	}
+	
+	public void atualizaFoto() {
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		requestContext.addCallbackParam("fotoPerfil", fotoPerfil);
+	}
+	
 }

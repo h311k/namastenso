@@ -19,20 +19,12 @@ import javax.persistence.Table;
 public class Pessoa {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
 	private int idUsuario;
 	private String fotoPerfil;
 	private String primeiroNome;
 	private String sobrenome;
 	private Date dataNascimento;
 	private String biografia;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public int getIdUsuario() {
 		return idUsuario;
 	}

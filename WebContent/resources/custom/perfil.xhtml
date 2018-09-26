@@ -38,9 +38,11 @@
 			<h:form id="form-upload-perfil" enctype="multipart/form-data" class="form-upload-foto-perfil">
 				<h:inputFile class="input-foto-perfil" value="#{pessoaBean.arquivoFotoPerfil}"/>
 				<h:commandButton class="executa-upload" action="#{pessoaBean.importaFoto()}">
-					<f:param name="idUsuario" value="#{usuarioBean.idUsuario}"/>
 					<f:ajax execute="@form" render="@none" onevent="atualizaFoto" />
 				</h:commandButton>
+			</h:form>
+			<h:form>
+				<p:remoteCommand name="atualizaFoto" actionListener="#{pessoaBean.atualizaFoto()}" oncomplete="getAtualizaFotoCallback(xhr, status, args) " />
 			</h:form>
 		</div>
 	</div>

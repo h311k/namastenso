@@ -8,6 +8,7 @@ function instanciaPerfil(calendario,fotoPerfil,inputFotoPerfil,btnSalvaPerfil) {
 	carregaFotoPerfil(fotoPerfil);
 	salvaFotoPerfil(inputFotoPerfil);
 	salvaPerfil(btnSalvaPerfil);
+	//atualizaFotoPerfil(fotoPerfil);
 }
 
 function formataCalendario(e) {
@@ -24,6 +25,7 @@ function carregaFotoPerfil(e) {
 		$('.input-foto-perfil').click();
 	});
 }
+
 
 function salvaFotoPerfil(e) {
 	$(e).change(function(){
@@ -46,6 +48,11 @@ function atualizaFoto(data) {
 		} else {
 			console.log('sucesso');
 			console.log(data);
+			atualizaFoto();
 		}
 	} 
+}
+function getAtualizaFotoCallback(xhr, status, args){
+	$('.foto-perfil').attr('img-src',args.fotoPerfil);
+	setFotoPerfil($('.foto-perfil'));
 }
