@@ -8,7 +8,6 @@ function instanciaPerfil(calendario,fotoPerfil,inputFotoPerfil,btnSalvaPerfil) {
 	carregaFotoPerfil(fotoPerfil);
 	salvaFotoPerfil(inputFotoPerfil);
 	salvaPerfil(btnSalvaPerfil);
-	//atualizaFotoPerfil(fotoPerfil);
 }
 
 function formataCalendario(e) {

@@ -77,8 +77,11 @@ public class PessoaBean {
 		//Entra aqui metodo de validacao e renomeio de arquivo do perfil
 		try {
 			if(arquivoFotoPerfil.getContentType().equals("image/jpeg")) {
-				fotoPerfil = "C:\\Desenvolvimento\\arquivos\\perfil\\"+idUsuario+".jpg";
+				
+				//fotoPerfil = "C:\\Desenvolvimento\\arquivos\\perfil\\"+idUsuario+".jpg";
+				fotoPerfil = "C:\\Desenvolvimento\\web\\upload\\perfil\\"+idUsuario+".jpg";
 				arquivoFotoPerfil.write(fotoPerfil);
+				fotoPerfil = "/foto-perfil/"+idUsuario+".jpg";
 			} else {
 				throw new RuntimeException("Arquivo com extensão não suportada.");
 			}	
@@ -88,6 +91,7 @@ public class PessoaBean {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void atualizaFoto() {
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 		requestContext.addCallbackParam("fotoPerfil", fotoPerfil);

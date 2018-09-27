@@ -3,8 +3,6 @@ package pessoa;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,7 +18,6 @@ public class Pessoa {
 
 	@Id
 	private int idUsuario;
-	private String fotoPerfil;
 	private String primeiroNome;
 	private String sobrenome;
 	private Date dataNascimento;
@@ -30,12 +27,6 @@ public class Pessoa {
 	}
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-	public String getFotoPerfil() {
-		return fotoPerfil;
-	}
-	public void setFotoPerfil(String fotoPerfil) {
-		this.fotoPerfil = fotoPerfil;
 	}
 	public String getPrimeiroNome() {
 		return primeiroNome;
