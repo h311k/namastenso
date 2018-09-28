@@ -31,7 +31,7 @@
 			<label>Data de Nascimento</label>
 			<p:calendar class="box-calendario" pattern="dd/MM/yyyy" value="#{pessoaBean.dataNascimento}"/>
 			<label>Biografia</label>
-			<textarea rows="" cols="" class="form-control"/>
+			<textarea id="biografia" rows="" cols="" class="form-control"/>
 			<div class="action">
 			   <a id="btn-salvar-perfil" class="btn btn-primary signup btn-dashboard">Salvar</a>
 			</div>
@@ -43,6 +43,9 @@
 			</h:form>
 			<h:form>
 				<p:remoteCommand name="atualizaFoto" actionListener="#{pessoaBean.atualizaFoto()}" oncomplete="getAtualizaFotoCallback(xhr, status, args) " />
+			</h:form>
+			<h:form>
+				<p:remoteCommand name="atualizaPerfil" actionListener="#{pessoaBean.atualizaPerfil()}" oncomplete="getAtualizaPerfilCallback(xhr, status, args) "/>
 			</h:form>
 		</div>
 	</div>

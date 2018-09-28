@@ -2,12 +2,12 @@
  * Scripts de perfil
  */
 
-function instanciaPerfil(calendario,fotoPerfil,inputFotoPerfil,btnSalvaPerfil) {
+function instanciaPerfil(calendario,fotoPerfil,inputFotoPerfil,btnSalvaPerfil,primeiroNome,apelido,sobrenome,dataNascimento,biografia) {
 	formataCalendario(calendario);
 	setFotoPerfil(fotoPerfil);
 	carregaFotoPerfil(fotoPerfil);
 	salvaFotoPerfil(inputFotoPerfil);
-	salvaPerfil(btnSalvaPerfil);
+	salvaPerfil(btnSalvaPerfil, primeiroNome, apelido, sobrenome, dataNascimento, biografia);
 }
 
 function formataCalendario(e) {
@@ -32,9 +32,17 @@ function salvaFotoPerfil(e) {
 	});
 }
 
-function salvaPerfil(e) {
-	$(e).click(function(){
+function salvaPerfil(btnSalvaPerfil, primeiroNome, apelido, sobrenome, dataNascimento, biografia) {
+	$(btnSalvaPerfil).click(function(){
 		console.log('Aqui entra o método para salvar os dados de perfil');
+		$('#loader-frame').fadeIn(500);
+		var primeiroNome = $(primeiroNome).val();
+		var apelido = $(apelido).val();
+		var sobrenome = $(sobrenome).val();
+		var dataNascimento = $(dataNascimento).val();
+		var biografia = $(biografia).val();
+		atualizaPerfil([{name: 'primeiroNome', value: primeiroNome},{name: 'apelido', value: apelido},{name: 'sobrenome', value: sobrenome},{name: 'dataNascimento', value: dataNascimento},{name: 'biografia', value: biografia}]);
+		$('#loader-frame').fadeOut(500);
 	});
 }
 

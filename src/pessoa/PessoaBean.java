@@ -1,11 +1,15 @@
 package pessoa;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 
 import org.primefaces.context.RequestContext;
@@ -95,6 +99,28 @@ public class PessoaBean {
 	public void atualizaFoto() {
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 		requestContext.addCallbackParam("fotoPerfil", fotoPerfil);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void atualizaPerfil() {
+		Map<String, String> requestParamMap = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		String primeiroNome = requestParamMap.get("primeiroNome");
+		String apelido = requestParamMap.get("apelido");
+		String sobrenome = requestParamMap.get("sobrenome");
+		String dataNascimento = requestParamMap.get("dataNascimento");
+		String biografia = requestParamMap.get("biografia");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/aaaa");
+		Date data = null;
+		try {
+			data = df.parse(dataNascimento);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		PessoaDAO pd =  new PessoaDAO();
+		pd.salvaPessoa(idUsuario, primeiroNome, apelido, sobrenome, data, biografia);
+		requestContext.addCallbackParam("retornoAtualizaPerfil", "ok");
 	}
 	
 }

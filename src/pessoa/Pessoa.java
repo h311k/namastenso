@@ -19,6 +19,7 @@ public class Pessoa {
 	@Id
 	private int idUsuario;
 	private String primeiroNome;
+	private String apelido;
 	private String sobrenome;
 	private Date dataNascimento;
 	private String biografia;
@@ -33,6 +34,12 @@ public class Pessoa {
 	}
 	public void setPrimeiroNome(String primeiroNome) {
 		this.primeiroNome = primeiroNome;
+	}
+	public String getApelido() {
+		return apelido;
+	}
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
 	}
 	public String getSobrenome() {
 		return sobrenome;
@@ -50,6 +57,18 @@ public class Pessoa {
 		return biografia;
 	}
 	public void setBiografia(String biografia) {
+		this.biografia = biografia;
+	}
+	
+	public Pessoa() {
+		
+	}
+	public Pessoa(int idUsuario, String primeiroNome, String apelido, String sobrenome, Date dataNascimento, String biografia) {
+		this.idUsuario = idUsuario;
+		this.primeiroNome = primeiroNome;
+		this.apelido = apelido;
+		this.sobrenome = sobrenome;
+		this.dataNascimento = dataNascimento;
 		this.biografia = biografia;
 	}
 }

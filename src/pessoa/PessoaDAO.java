@@ -1,5 +1,7 @@
 package pessoa;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 
 import conexao.FabricaConexao;
@@ -10,7 +12,8 @@ public class PessoaDAO {
 	 * Cria pessoa associada ao usuario (perfil)
 	 * 
 	 */
-	protected void salvaPessoa(Pessoa pessoa) {
+	protected void salvaPessoa(int idUsuario, String primeiroNome, String apelido, String sobrenome, Date dataNascimento, String biografia) {
+		Pessoa pessoa = new Pessoa(idUsuario, primeiroNome, apelido, sobrenome, dataNascimento, biografia);
 		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
 		manager.getTransaction().begin();
 		manager.merge(pessoa);
