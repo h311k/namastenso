@@ -13,7 +13,7 @@ $(document).ready(function() {
 		$('#conteudo').hide();
 		$.ajax({url:"/namastenso/resources/custom/perfil.xhtml",dataType: "html",success:function(result){
 			$('#conteudo').html(result);
-			instanciaPerfil($('.box-calendario input'),$('.foto-perfil'),$('.input-foto-perfil'),$('#btn-salvar-perfil'),$('#primeiro-nome'),$('#apelido'),$('#sobrenome'),$('.box-calendario > input'),$('#biografia'));
+			instanciaPerfil($('.box-calendario input'),$('.foto-perfil'),$('.input-foto-perfil'),$('#btn-salvar-perfil'),$('#primeiro-nome'));
 			$('#conteudo').fadeIn('slow');
 		}});
 	});

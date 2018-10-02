@@ -111,7 +111,7 @@ public class PessoaBean {
 		String sobrenome = requestParamMap.get("sobrenome");
 		String dataNascimento = requestParamMap.get("dataNascimento");
 		String biografia = requestParamMap.get("biografia");
-		SimpleDateFormat df = new SimpleDateFormat("dd/MM/aaaa");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		Date data = null;
 		try {
 			data = df.parse(dataNascimento);
