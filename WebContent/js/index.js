@@ -5,7 +5,8 @@
 $(document).ready(function() {
 	
 	$('.opt-menu').click(function() {
-		$(this).toggleClass('current');
+		$('.opt-menu').removeClass('current');
+		$(this).addClass('current');
 	});
 	
 	//Meu Perfil

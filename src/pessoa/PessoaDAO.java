@@ -20,4 +20,16 @@ public class PessoaDAO {
 		manager.getTransaction().commit();
 		manager.close();
 	}
+	
+	/**
+	 * Busca pessoa por idPessoa (perfil)
+	 * 
+	 * @param idUsuario
+	 * @return Pessoa
+	 */
+	protected Pessoa carregaPessoa(int idUsuario) {
+		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
+		Pessoa pessoa = manager.find(Pessoa.class, idUsuario);
+		return pessoa;	
+	}
 }

@@ -1,11 +1,15 @@
 package pessoa;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -13,6 +17,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 
 import org.primefaces.context.RequestContext;
+
+import usuario.UsuarioBean;
 
 @ManagedBean
 @SessionScoped
@@ -25,7 +31,7 @@ public class PessoaBean {
 	private String primeiroNome;
 	private String apelido;
 	private String sobrenome;
-	private Date dataNascimento;
+	private String dataNascimento;
 	private String biografia;
 	
 	public int getIdUsuario() {
@@ -64,10 +70,10 @@ public class PessoaBean {
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public String getBiografia() {
@@ -77,12 +83,31 @@ public class PessoaBean {
 		this.biografia = biografia;
 	}
 	
+	@PostConstruct
+	public void init() {
+		//FacesContext facesContext = FacesContext.getCurrentInstance();
+		//idUsuario = (int) facesContext.getApplication().createValueBinding("#{usuarioBean.idUsuario}").getValue(facesContext);
+		PessoaDAO pd = new PessoaDAO();
+		Pessoa pessoa = pd.carregaPessoa(idUsuario);
+		try {
+			FileReader fr = new FileReader(new File("C:\\Desenvolvimento\\web\\upload\\perfil\\"+idUsuario+".jpg"));
+			fotoPerfil = "/foto-perfil/"+idUsuario+".jpg";
+		} catch (FileNotFoundException e) {
+			fotoPerfil = "images/Generic-Profile.png";
+		}
+		primeiroNome = pessoa.getPrimeiroNome();
+		apelido = pessoa.getApelido();
+		sobrenome = pessoa.getSobrenome();
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		dataNascimento = df.format(pessoa.getDataNascimento());
+		biografia = pessoa.getBiografia();
+		
+	}
+	
 	public void importaFoto() {
 		//Entra aqui metodo de validacao e renomeio de arquivo do perfil
 		try {
 			if(arquivoFotoPerfil.getContentType().equals("image/jpeg")) {
-				
-				//fotoPerfil = "C:\\Desenvolvimento\\arquivos\\perfil\\"+idUsuario+".jpg";
 				fotoPerfil = "C:\\Desenvolvimento\\web\\upload\\perfil\\"+idUsuario+".jpg";
 				arquivoFotoPerfil.write(fotoPerfil);
 				fotoPerfil = "/foto-perfil/"+idUsuario+".jpg";
