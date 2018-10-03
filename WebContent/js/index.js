@@ -11,7 +11,7 @@ $(document).ready(function() {
 	
 	//Meu Perfil
 	$('#home').click(function() {
-		$('#conteudo').hide();
+		$('#conteudo').fadeOut('slow');
 		$.ajax({url:"/namastenso/resources/custom/perfil.xhtml",dataType: "html",success:function(result){
 			$('#conteudo').html(result);
 			instanciaPerfil($('.box-calendario input'),$('.foto-perfil'),$('.input-foto-perfil'),$('#btn-salvar-perfil'),$('#primeiro-nome'));

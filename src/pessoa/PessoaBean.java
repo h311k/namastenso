@@ -85,8 +85,6 @@ public class PessoaBean {
 	
 	@PostConstruct
 	public void init() {
-		//FacesContext facesContext = FacesContext.getCurrentInstance();
-		//idUsuario = (int) facesContext.getApplication().createValueBinding("#{usuarioBean.idUsuario}").getValue(facesContext);
 		PessoaDAO pd = new PessoaDAO();
 		Pessoa pessoa = pd.carregaPessoa(idUsuario);
 		try {
