@@ -9,10 +9,9 @@ $(document).ready(function(){
 	$.ajax('http://ip-api.com/json')
 	  .then(
 	      function success(response) {
-	    	  console.log(response);
 	          cidade = response.city;
 	          estado = response.region;
-	          getClimaTempo(cidade, estado);
+	          getClimaTempoCidadeId(cidade, estado);
 	      },
 
 	      function fail(data, status) {
@@ -22,16 +21,15 @@ $(document).ready(function(){
 	  );
 });
 
-function getClimaTempo(cidade, estado) {
-	$.ajax('https://cors.io/?http://apiadvisor.climatempo.com.br/api/v1/locale/city?name='+cidade+'&state='+estado+'&token=207dd08101b70c9a6a72b196757c9d98')
-	  .then(
-	      function success(response) {
-	          console.log(response);
-	      },
+function getClimaTempoCidadeId(cidade, estado) {
+	$.getJSON('https://cors.io/?http://apiadvisor.climatempo.com.br/api/v1/locale/city?name='+cidade+'&state='+estado+'&token=207dd08101b70c9a6a72b196757c9d98', function(data){
+		idLocal = data[0].id;
+	    getClimaTempoDados(idLocal);
+	});
+}
 
-	      function fail(data, status) {
-	          console.log('Request failed.  Returned status of',
-	                      status);
-	      }
-	  );
+function getClimaTempoDados(idLocal) {
+	$.getJSON('https://cors.io/?http://apiadvisor.climatempo.com.br/api/v1/forecast/locale/'+idLocal+'/hours/72?token=207dd08101b70c9a6a72b196757c9d98', function(data){
+		console.log(data);
+	});
 }
