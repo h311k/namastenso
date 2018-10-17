@@ -30,6 +30,13 @@ function getClimaTempoCidadeId(cidade, estado) {
 
 function getClimaTempoDados(idLocal) {
 	$.getJSON('https://cors.io/?http://apiadvisor.climatempo.com.br/api/v1/forecast/locale/'+idLocal+'/hours/72?token=207dd08101b70c9a6a72b196757c9d98', function(data){
-		console.log(data);
+		var d = new Date();
+		var dia = d.getDate();
+		var mes = d.getMonth()+1;
+		var ano = d.getFullYear();
+		var dia = dia+'/'+mes+'/'+ano+' '+d.getHours()+':00:00';
+		var result = $.grep(data.data, function(e){ return e.date_br == dia; });
+		console.log(result[0].date);
+		console.log(result[0].temperature.temperature);
 	});
 }
