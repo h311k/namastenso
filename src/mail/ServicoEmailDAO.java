@@ -28,4 +28,13 @@ public class ServicoEmailDAO {
 			manager.close();
 		}	
 	}
+	
+	public ServicoEmail getServicoEmail(int idUsuario) {
+		EntityManager manager = FabricaConexao.getFactory().createEntityManager();
+		ServicoEmail ms = manager.find(ServicoEmail.class, idUsuario);
+		Security security = new Security();
+		ms.setSenha(security.decode(ms.getSenha()));
+		return ms;
+		
+	}
 }

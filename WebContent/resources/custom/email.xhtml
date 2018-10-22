@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<composite:interface>
+	
+</composite:interface>
+<composite:implementation>
+<h:head></h:head>
+	<div class="col-md-4">
+		<div id="form-email" class="content-box">
+			<h3>Configurar Email</h3>
+			<label>Nome</label>
+			<input id="primeiro-nome" class="form-control" type="text" value="#{pessoaBean.primeiroNome}" disabled="disabled"/>
+			<label>Identificação da conta</label>
+			<input id="nome-da-conta" class="form-control" type="text" value="#{servicoEmailBean.nome}"/>
+			<label>Host</label>
+			<input id="host" class="form-control" type="text" value="#{servicoEmailBean.host}"/>
+			<label>Porta</label>
+			<input id="porta" class="form-control" type="number" value="#{servicoEmailBean.porta}"/>
+			<label>Usuário</label>
+			<input id="usuario" class="form-control" type="text" value="#{servicoEmailBean.usuario}"/>
+			<label>Senha</label>
+			<input id="senha" class="form-control" type="password" value="#{servicoEmailBean.senha}"/>
+			<div class="action">
+			   <a id="btn-adicionar-conta-email" class="btn btn-primary signup btn-dashboard">Salvar</a>
+			</div>
+		</div>
+	</div>
+</composite:implementation>
+</html>

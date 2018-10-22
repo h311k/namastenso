@@ -17,4 +17,12 @@ $(document).ready(function() {
 			$('#conteudo').fadeIn('slow');
 		}});
 	});
+	
+	//Configurações
+	$('#configuracoes').click(function(){
+		$.ajax({url:"/namastenso/resources/custom/email.xhtml",dataType: "html",success:function(result){
+			$('#conteudo').html(result);
+			$('#conteudo').fadeIn('slow');
+		}});
+	});
 });

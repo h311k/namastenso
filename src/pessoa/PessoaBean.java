@@ -114,7 +114,6 @@ public class PessoaBean {
 			}	
 		} catch (IOException e) {
 			throw new RuntimeException("O processamento do arquivo falhou");
-			//e.printStackTrace();
 		}
 	}
 	
