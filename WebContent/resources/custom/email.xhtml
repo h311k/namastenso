@@ -29,8 +29,11 @@
 			<label>Senha</label>
 			<input id="senha" class="form-control" type="password" value="#{servicoEmailBean.senha}"/>
 			<div class="action">
-			   <a id="btn-adicionar-conta-email" class="btn btn-primary signup btn-dashboard">Salvar</a>
+			   <a id="btn-adicionar-servico-email" class="btn btn-primary signup btn-dashboard">Salvar</a>
 			</div>
+			<h:form>
+				<p:remoteCommand name="atualizaEmail" actionListener="#{servicoEmailBean.atualizaServicoEmail()}" oncomplete="getAtualizaServicoEmailCallback(xhr, status, args) "/>
+			</h:form>
 		</div>
 	</div>
 </composite:implementation>

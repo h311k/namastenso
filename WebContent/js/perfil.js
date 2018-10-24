@@ -65,5 +65,5 @@ function getAtualizaFotoCallback(xhr, status, args){
 }
 
 function getAtualizaPerfilCallback(xhr, status, args){
-	console.log('salvou');
+	$('#form-perfil').prepend('<div id="email-salvo" class="alert alert-success">O seu perfil foi atualizado.</div>');
 }
