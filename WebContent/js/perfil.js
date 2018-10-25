@@ -45,20 +45,6 @@ function salvaPerfil(btnSalvaPerfil) {
 	});
 }
 
-function atualizaFoto(data) {
-	if(data.status=='success'){
-		if(data.responseText.indexOf('<error>') >=0){
-			//Tratamento de erro no upload
-			console.log('erro na importação');
-			console.log(data);
-		} else {
-			console.log('sucesso');
-			console.log(data);
-			atualizaFoto();
-		}
-	} 
-}
-
 function getAtualizaFotoCallback(xhr, status, args){
 	$('.foto-perfil').attr('img-src',args.fotoPerfil);
 	setFotoPerfil($('.foto-perfil'));

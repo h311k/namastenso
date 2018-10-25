@@ -18,8 +18,6 @@ import javax.servlet.http.Part;
 
 import org.primefaces.context.RequestContext;
 
-import usuario.UsuarioBean;
-
 @ManagedBean
 @SessionScoped
 public class PessoaBean {
